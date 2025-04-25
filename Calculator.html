@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Casio fx-991ES PLUS Pro Web Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .calculator {
+      background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+      border-radius: 25px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      width: 420px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .header {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #ffffff;
+      text-align: center;
+      margin-bottom: 1.2rem;
+      letter-spacing: 1.2px;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .display {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.5rem;
+      border-radius: 12px;
+      border: none;
+      margin-bottom: 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      text-align: right;
+      box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1);
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+
+    button {
+      padding: 1rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      background: linear-gradient(to top left, #3a3d40, #1f1f1f);
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.25s ease-in-out;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    button:hover {
+      background: linear-gradient(to top left, #4e555e, #2c2c2c);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    <div class="header">Casio fx-991ES PLUS</div>
+    <input type="text" class="display" id="display" disabled>
+    <div class="buttons">
+      <button onclick="press('7')">7</button>
+      <button onclick="press('8')">8</button>
+      <button onclick="press('9')">9</button>
+      <button onclick="press('/')">/</button>
+      <button onclick="press('sqrt(')">√</button>
+      <button onclick="press('log(')">log</button>
+      <button onclick="press('4')">4</button>
+      <button onclick="press('5')">5</button>
+      <button onclick="press('6')">6</button>
+      <button onclick="press('*')">*</button>
+      <button onclick="press('sin(')">sin</button>
+      <button onclick="press('cos(')">cos</button>
+      <button onclick="press('1')">1</button>
+      <button onclick="press('2')">2</button>
+      <button onclick="press('3')">3</button>
+      <button onclick="press('-')">-</button>
+      <button onclick="press('tan(')">tan</button>
+      <button onclick="press('^')">^</button>
+      <button onclick="press('0')">0</button>
+      <button onclick="press('.')">.</button>
+      <button onclick="calculate()">=</button>
+      <button onclick="press('+')">+</button>
+      <button onclick="clearDisplay()">C</button>
+      <button onclick="backspace()">←</button>
+    </div>
+  </div>
+
+  <script>
+    function press(val) {
+      document.getElementById('display').value += val;
+    }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+
+    function backspace() {
+      let val = document.getElementById('display').value;
+      document.getElementById('display').value = val.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        let result = eval(document.getElementById('display').value.replace('^', '**'));
+        document.getElementById('display').value = result;
+      } catch (e) {
+        document.getElementById('display').value = 'Error';
+      }
+    }
+  </script>
+
+</body>
+</html>
